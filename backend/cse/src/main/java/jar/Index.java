@@ -29,6 +29,7 @@ public class Index {
 
         r.put("name", "welcome spring api");
         r.put("status", 200);
+        r.put("github","https://github.com/vikramdev772/csepr");
         r.put("fruits", "🍌🍉🫐🍏🍑🥭🍎");
 
         return r;
