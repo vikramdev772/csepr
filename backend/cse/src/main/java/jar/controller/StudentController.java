@@ -17,34 +17,34 @@ import jar.repo.*;
 @RequestMapping("/api/v1")
 public class StudentController {
 
-    @GetMapping()
-    Map<Object, Object> m1() {
-        Map<Object, Object> res = new HashMap<>();
+  @GetMapping()
+  Map<Object, Object> m1() {
+    Map<Object, Object> res = new HashMap<>();
 
-        res.put("msg", "Get api");
+    res.put("msg", "Get api");
 
-        return res;
-    }
+    return res;
+  }
 
-    @Autowired
-    StudentRepo db;
+  @Autowired
+  StudentRepo db;
 
-    @PostMapping()
-    Map<Object, Object> m2(@RequestBody Student s) {
-        Map<Object, Object> res = new HashMap<>();
-        res.put("msg", "Post api");
-        String name = s.getName();
-        String roll = s.getRoll();
-        String ip = s.getIp();
-        Student obj = new Student();
+  @PostMapping()
+  Map<Object, Object> m2(@RequestBody Student s) {
+    Map<Object, Object> res = new HashMap<>();
+    res.put("msg", "Post api");
+    String name = s.getName();
+    String roll = s.getRoll();
+    String ip = s.getIp();
+    Student obj = new Student();
 
-        obj.setName(name);
-        obj.setRoll(roll);
-        obj.setIp(ip);
+    obj.setName(name);
+    obj.setRoll(roll);
+    obj.setIp(ip);
 
-        db.save(obj);
+    db.save(obj);
 
-        return res;
-    }
+    return res;
+  }
 
 }

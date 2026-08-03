@@ -15,50 +15,47 @@ import jar.dto.R;
 @RestController
 public class Index {
 
-    // @GetMapping("/")
-    @PostMapping("/")
-    R res() {
+  // @GetMapping("/")
+  @PostMapping("/")
+  R res() {
 
-        return new R();
+    return new R();
+  }
+
+  @GetMapping("/api")
+  Map<Object, Object> m1() {
+
+    Map<Object, Object> r = new HashMap<>();
+
+    r.put("name", "welcome spring api");
+    r.put("status", 200);
+    r.put("github", "https://github.com/vikramdev772/csepr");
+    r.put("fruits", "🍌🍉🫐🍏🍑🥭🍎");
+
+    return r;
+  }
+
+  @GetMapping("/api/fib")
+  List<Object> m2(@RequestParam int n) {
+    List<Object> l = new ArrayList<>();
+    l.add(0);
+    l.add(1);
+    for (int i = 2; i <= n; i++) {
+      int o = new Index().f(i);
+      l.add(o);
     }
+    return l;
 
-    @GetMapping("/api")
-    Map<Object, Object> m1() {
+  }
 
-        Map<Object, Object> r = new HashMap<>();
-
-        r.put("name", "welcome spring api");
-        r.put("status", 200);
-        r.put("github","https://github.com/vikramdev772/csepr");
-        r.put("fruits", "🍌🍉🫐🍏🍑🥭🍎");
-
-        return r;
+  // Trying fib in recursive way and Checking at testcase 37
+  int f(int n) {
+    // Base-case
+    if (n <= 1) {
+      return n;
     }
+    // recursive case
+    return f(n - 1) + f(n - 1);
+  }
 
-    @GetMapping("/api/fib")
-    List<Object> m2(@RequestParam int n) {
-        List<Object> l = new ArrayList<>();
-        l.add(0);
-        l.add(1);
-        for (int i = 2; i <= n; i++) {
-            int o=new Index().f(i);
-            l.add(o);
-        }
-        return l;
-
-    }
-
-    int f(int n) {
-        int a = 0, b = 1;
-        for (int i = 2; i <= n; i++) {
-            int c = a + b;
-            a = b;
-            b = c;
-        }
-        return b;
-
-    }
-
-
-    
 }
