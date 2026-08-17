@@ -14,41 +14,30 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jar.model.Student;
 import jar.repo.StudentRepo;
+import jar.services.Postservice;
 
 @RestController
 @RequestMapping("/api/v1")
 @CrossOrigin("*")
 public class StudentController {
 
-    @GetMapping()
+    @Autowired
+    private StudentRepo db;
+
+    @Autowired
+    private Postservice postService;
+
+    @GetMapping
     Map<Object, Object> m1() {
         Map<Object, Object> res = new HashMap<>();
-
         res.put("msg", "Get api");
         res.put("list", getAllStudents());
-
         return res;
     }
 
-    @Autowired
-    StudentRepo db;
-
-    @PostMapping()
-    Map<Object, Object> m2(@RequestBody Student s) {
-        Map<Object, Object> res = new HashMap<>();
-        res.put("msg", "Post api");
-        String name = s.getName();
-        String roll = s.getRoll();
-        String ip = s.getIp();
-        Student obj = new Student();
-
-        obj.setName(name);
-        obj.setRoll(roll);
-        obj.setIp(ip);
-
-        db.save(obj);
-
-        return res;
+    @PostMapping
+    Map<Object, Object> post(@RequestBody Student s) {
+        return postService.post(s);
     }
 
     List<Student> getAllStudents() {
